@@ -1,0 +1,43 @@
+name: Build .deb (real macOS/Xcode toolchain)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Theos
+        run: |
+          export THEOS="$RUNNER_WORKSPACE/theos"
+          echo "THEOS=$THEOS" >> "$GITHUB_ENV"
+          git clone --recursive https://github.com/theos/theos.git "$THEOS"
+
+      - name: Install community SDK with private framework stubs
+        run: |
+          export THEOS="$RUNNER_WORKSPACE/theos"
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/theos/sdks.git "$RUNNER_TEMP/sdks"
+          cd "$RUNNER_TEMP/sdks"
+          git sparse-checkout set iPhoneOS15.6.sdk
+          mkdir -p "$THEOS/sdks"
+          mv iPhoneOS15.6.sdk "$THEOS/sdks/"
+
+      - name: Install ldid
+        run: brew install ldid
+
+      - name: Build rootless .deb
+        run: |
+          make clean
+          make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: BetterCCVPN-deb
+          path: packages/*.deb

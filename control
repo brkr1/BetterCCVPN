@@ -1,0 +1,9 @@
+Package: com.brkr1.tweaks.betterccvpn
+Name: BetterCCVPN
+Depends: mobilesubstrate, com.opa334.ccsupport, firmware (>= 15.0)
+Version: 0.1
+Architecture: iphoneos-arm
+Description: Control Center VPN toggle - hold to pick which configured VPN is active.
+Maintainer: brkr1
+Author: brkr1
+Section: Tweaks
