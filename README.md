@@ -9,6 +9,7 @@ A Control Center module to switch and connect VPNs without leaving Control Cente
 - iPhone 14 Pro Max (iPhone15,3)
 - iOS 16.6.1
 - roothide Bootstrap (rootless jailbreak)
+- confirmed working in iPhone XS 17.4.1 Dopamine by reddit user u/sirscrafty
 
 Other devices and iOS versions are untested and not yet supported.
 
