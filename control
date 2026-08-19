@@ -7,3 +7,5 @@ Description: Control Center VPN toggle - hold to pick which configured VPN is ac
 Maintainer: brkr1
 Author: brkr1
 Section: Tweaks
+Depiction: https://brkr1.github.io/repo/depictions/com.brkr1.tweaks.betterccvpn/depiction.json
+SileoDepiction: https://brkr1.github.io/repo/depictions/com.brkr1.tweaks.betterccvpn/depiction.json
